@@ -9,6 +9,7 @@ class Config(object):
     # Flask
     SECRET_KEY = os.environ.get("SECRET_KEY")
 
+    PREFERRED_URL_SCHEME = "https"
     # Azure Blob Storage
     BLOB_ACCOUNT = os.environ.get("BLOB_ACCOUNT")
     BLOB_STORAGE_KEY = os.environ.get("BLOB_STORAGE_KEY")
