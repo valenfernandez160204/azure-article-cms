@@ -1,12 +1,4 @@
-# Write-up Template
+Changes That Would Affect the Deployment Decision
+Azure App Service is the best option for the current CMS because the application uses a standard Flask web architecture and does not require direct access to the operating system. However, I would choose an Azure Virtual Machine instead if the application required custom operating-system packages or drivers that are not supported by App Service, long-running background services, specialized networking or compliance configurations, or full control over the underlying infrastructure.
 
-### Analyze, choose, and justify the appropriate resource option for deploying the app.
-
-*For **both** a VM or App Service solution for the CMS app:*
-- *Analyze costs, scalability, availability, and workflow*
-- *Choose the appropriate solution (VM or App Service) for deploying the app*
-- *Justify your choice*
-
-### Assess app changes that would change your decision.
-
-*Detail how the app and any other needs would have to change for you to change your decision in the last section.* 
+Moving the application to a Virtual Machine would also introduce additional operational requirements. I would need to configure and maintain a production web server such as Nginx and Gunicorn, manage HTTPS certificates, operating-system updates, security patches, firewall rules, backups, monitoring, availability, and scaling. The deployment workflow would also need to change from the managed GitHub deployment provided by App Service to a VM-based process using SSH, deployment scripts, or a separate continuous integration and deployment pipeline.
