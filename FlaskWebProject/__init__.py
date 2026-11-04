@@ -10,10 +10,18 @@ from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_session import Session
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
+# Trust Azure App Service proxy headers so external URLs use HTTPS
+app.wsgi_app = ProxyFix(
+    app.wsgi_app,
+    x_proto=1,
+    x_host=1
+)
 
 # Configure application logging for Azure App Service
 app.logger.setLevel(logging.INFO)
